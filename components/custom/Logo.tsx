@@ -4,8 +4,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 
 export default function Logo() {
-    const { theme, setTheme } = useTheme();
-    console.log(theme);
+    const { theme } = useTheme();
     return (
         <div>
             {theme === "light" ? (

@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { ConvexClientProvider } from "./ConvexProvider";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -28,7 +29,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
+                    <ConvexClientProvider>{children}</ConvexClientProvider>
                 </ThemeProvider>
             </body>
         </html>
