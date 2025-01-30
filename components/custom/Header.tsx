@@ -1,5 +1,5 @@
-import { Button } from "../ui/button";
 import Logo from "./Logo";
+import SignInButton from "./SignInButton";
 import { ThemeToggle } from "./ThemeToggle";
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
 
                 <nav className=" flex gap-4">
                     <ThemeToggle />
-                    <Button>Get Started</Button>
+                    <SignInButton size={"default"} variant={"default"} />
                 </nav>
             </div>
         </header>

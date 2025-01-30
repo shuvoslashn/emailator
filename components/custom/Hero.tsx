@@ -1,4 +1,5 @@
 import { Button } from "../ui/button";
+import SignInButton from "./SignInButton";
 
 export default function Hero() {
     return (
@@ -17,7 +18,7 @@ export default function Hero() {
                     <Button size={"lg"} variant={"outline"}>
                         Try Demo
                     </Button>
-                    <Button size={"lg"}>Get Started</Button>
+                    <SignInButton size={"lg"} variant={"default"} />
                 </div>
             </div>
         </section>

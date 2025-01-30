@@ -1,7 +1,7 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { ConvexClientProvider } from "./ConvexProvider";
+import { ConvexClientProvider } from "../components/providers/ConvexProvider";
 import "./globals.css";
 
 const poppins = Poppins({
