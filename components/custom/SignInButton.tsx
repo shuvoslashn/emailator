@@ -43,11 +43,23 @@ export default function SignInButton({ size, variant }: variantType) {
             }
 
             // saving data to database
-            await CreateUser({
+            const result = await CreateUser({
                 name: user?.name,
                 email: user?.email,
                 picture: user?.picture,
             });
+
+            const userDetails = {
+                ...user,
+                _id: (result as { _id?: string })?._id ?? result,
+            };
+
+            if (typeof window !== undefined) {
+                localStorage.setItem(
+                    "userDetails",
+                    JSON.stringify(userDetails)
+                );
+            }
         },
         onError: (errorResponse) => console.log(errorResponse),
     });
