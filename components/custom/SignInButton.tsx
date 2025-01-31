@@ -1,7 +1,9 @@
 "use client";
 
+import { api } from "@/convex/_generated/api";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useMutation } from "convex/react";
 import { Button } from "../ui/button";
 
 type variantType = {
@@ -18,6 +20,7 @@ type variantType = {
 };
 
 export default function SignInButton({ size, variant }: variantType) {
+    const CreateUser = useMutation(api.users.CreateUser);
     const googleLogin = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
             console.log(tokenResponse);
@@ -30,15 +33,21 @@ export default function SignInButton({ size, variant }: variantType) {
                 }
             );
 
-            console.log(userInfo?.data);
+            const user = userInfo?.data;
 
-            // setting data to localStorage
+            console.log(user);
+
+            // saving data to localStorage
             if (typeof window !== undefined) {
-                localStorage.setItem(
-                    "userDetails",
-                    JSON.stringify(userInfo?.data)
-                );
+                localStorage.setItem("userDetails", JSON.stringify(user));
             }
+
+            // saving data to database
+            await CreateUser({
+                name: user?.name,
+                email: user?.email,
+                picture: user?.picture,
+            });
         },
         onError: (errorResponse) => console.log(errorResponse),
     });
