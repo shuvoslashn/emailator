@@ -1,16 +1,16 @@
 "use client";
 
-import { userDetailsContext } from "@/context/UserDetailsContext";
+import { UserDetails, userDetailsContext } from "@/context/UserDetailsContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export function Provider({ children }: { children: ReactNode }) {
     const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
-    const [userDetails, setUserDetails] = useState();
+    const [userDetails, setUserDetails] = useState<UserDetails | undefined>();
 
     useEffect(() => {
-        if (typeof window !== undefined) {
+        if (typeof window !== "undefined") {
             const storage = JSON.parse(localStorage.getItem("userDetails")!);
 
             if (!storage?.email || !storage) {
@@ -35,7 +35,3 @@ export function Provider({ children }: { children: ReactNode }) {
         </ConvexProvider>
     );
 }
-
-export const useUserDetails= () => {
-    return useContext(userDetailsContext);
-};

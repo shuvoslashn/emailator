@@ -13,6 +13,7 @@ export default function Logo() {
                     width={160}
                     height={50}
                     alt="Emailator Logo"
+                    className="w-[160px] h-auto"
                 />
             ) : (
                 <Image
@@ -20,6 +21,7 @@ export default function Logo() {
                     width={160}
                     height={50}
                     alt="Emailator Logo"
+                    className="w-[160px] h-auto"
                 />
             )}
         </div>

@@ -1,3 +1,17 @@
-import { createContext } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
 
-export const userDetailsContext = createContext({});
+export type UserDetails = {
+    email?: string;
+    name?: string;
+    picture?: string;
+    credits?: number;
+};
+
+type UserDetailsContextType = {
+    userDetails: UserDetails | undefined;
+    setUserDetails: Dispatch<SetStateAction<UserDetails | undefined>>;
+};
+
+export const userDetailsContext = createContext<
+    UserDetailsContextType | undefined
+>(undefined);
