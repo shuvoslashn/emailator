@@ -12,16 +12,21 @@ export default function Header() {
     const { userDetails } = useUserDetails();
     return (
         <header className="py-3 shadow-2xl shadow-zinc-800/10">
-            <div className="container flex justify-between items-center">
+            <div className="container flex justify-between items-center gap-4">
                 <Logo />
 
                 <nav className="flex gap-4">
                     <ThemeToggle />
                     <>
                         {userDetails?.email ? (
-                            <div className="flex items-center gap-4">
-                                <Button asChild>
-                                    <Link href={"/dashboard"}>Dashboard</Link>
+                            <div className="flex items-center gap-2 md:gap-4">
+                                <Button asChild className="px-3 py-2">
+                                    <Link
+                                        className="text-[12px] md:text-sm"
+                                        href={"/dashboard"}
+                                    >
+                                        Dashboard
+                                    </Link>
                                 </Button>
                                 {userDetails?.picture && userDetails?.name && (
                                     <Image

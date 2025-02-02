@@ -4,6 +4,7 @@ import { api } from "@/convex/_generated/api";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { Button } from "../ui/button";
 
 type variantType = {
@@ -17,10 +18,17 @@ type variantType = {
         | "ghost"
         | null
         | undefined;
+    className?: string;
 };
 
-export default function SignInButton({ size, variant }: variantType) {
+export default function SignInButton({
+    size,
+    variant,
+    className,
+}: variantType) {
     const CreateUser = useMutation(api.users.CreateUser);
+    const router = useRouter();
+
     const googleLogin = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
             console.log(tokenResponse);
@@ -37,12 +45,12 @@ export default function SignInButton({ size, variant }: variantType) {
 
             console.log(user);
 
-            // saving data to localStorage
-            if (typeof window !== undefined) {
+            // Saving data to localStorage
+            if (typeof window !== "undefined") {
                 localStorage.setItem("userDetails", JSON.stringify(user));
             }
 
-            // saving data to database
+            // Saving data to database
             const result = await CreateUser({
                 name: user?.name,
                 email: user?.email,
@@ -54,18 +62,27 @@ export default function SignInButton({ size, variant }: variantType) {
                 _id: (result as { _id?: string })?._id ?? result,
             };
 
-            if (typeof window !== undefined) {
+            if (typeof window !== "undefined") {
                 localStorage.setItem(
                     "userDetails",
                     JSON.stringify(userDetails)
                 );
             }
+
+            // Redirect to dashboard after successful data save
+            router.push("/dashboard");
         },
         onError: (errorResponse) => console.log(errorResponse),
     });
+
     return (
         <>
-            <Button size={size} variant={variant} onClick={() => googleLogin()}>
+            <Button
+                className={className}
+                size={size}
+                variant={variant}
+                onClick={() => googleLogin()}
+            >
                 Get Started
             </Button>
         </>
