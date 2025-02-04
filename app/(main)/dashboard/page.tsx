@@ -3,6 +3,7 @@ import EmailTemplateList from "@/components/custom/EmailTemplateList";
 import Header from "@/components/custom/Header";
 import { Button } from "@/components/ui/button";
 import { useUserDetails } from "@/hooks/useUserDetails";
+import Link from "next/link";
 
 export default function Dashboard() {
     const { userDetails, setUserDetails } = useUserDetails();
@@ -18,7 +19,9 @@ export default function Dashboard() {
                         </span>{" "}
                         😊,
                     </h2>
-                    <Button>+ Create New</Button>
+                    <Button asChild>
+                        <Link href="/editor/456">+ Create New</Link>
+                    </Button>
                 </div>
                 <EmailTemplateList />
             </main>
