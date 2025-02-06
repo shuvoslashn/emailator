@@ -9,9 +9,9 @@ export default function Editor() {
             <EditorHeader />
 
             {/* Editor Body */}
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-6 pt-14 overflow-hidden h-screen">
                 <ElementsSideBar />
-                <div className="col-span-3">
+                <div className="col-span-4">
                     <Canvas />
                 </div>
                 <Settings />
