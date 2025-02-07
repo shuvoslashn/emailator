@@ -12,6 +12,6 @@ type UserDetailsContextType = {
     setUserDetails: Dispatch<SetStateAction<UserDetails | undefined>>;
 };
 
-export const userDetailsContext = createContext<
+export const UserDetailsContext = createContext<
     UserDetailsContextType | undefined
 >(undefined);
