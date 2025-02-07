@@ -2,11 +2,21 @@
 
 import ElementList from "@/data/ElementList";
 import Layout from "@/data/Layout";
+import { useDragDropElementLayout } from "@/hooks/useDragDropElemenLayout";
+import { useId } from "react";
 import ElementLayoutCard from "./ElementLayoutCard";
 
 export default function ElementsSideBar() {
+    const { dragElementLayout, setDragElementLayout } =
+        useDragDropElementLayout();
+
     const onDragLayoutStart = (layout: any) => {
-        console.log(layout);
+        setDragElementLayout({
+            dragLayout: {
+                ...layout,
+                id: Date.now(),
+            },
+        });
     };
 
     return (
@@ -16,7 +26,7 @@ export default function ElementsSideBar() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                     {Layout.map((layout) => (
                         <div
-                            key={layout.type}
+                            key={useId()}
                             draggable
                             onDragStart={() => onDragLayoutStart(layout)}
                         >
@@ -31,7 +41,7 @@ export default function ElementsSideBar() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                     {ElementList.map((layout) => (
                         <div
-                            key={layout.type}
+                            key={useId()}
                             draggable
                             onDragStart={() => onDragLayoutStart(layout)}
                         >

@@ -1,7 +1,11 @@
+"use client";
+
+import { useId } from "react";
+
 export default function ElementLayoutCard({ layout }: any) {
     return (
         <div
-            key={layout.type}
+            key={useId()}
             className="min-h-24 dark:bg-zinc-800/20 flex items-center justify-center flex-col gap-1 border cursor-grab rounded-md border-dashed hover:border-primary hover:shadow-md group  duration-150"
         >
             {

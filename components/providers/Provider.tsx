@@ -1,5 +1,13 @@
 "use client";
 
+import {
+    DragDropLayoutElement,
+    DragDropLayoutElementContext,
+} from "@/context/DragDropLayoutElementContext";
+import {
+    EmailTemplate,
+    EmailTemplateContext,
+} from "@/context/EmailTemplateContext";
 import { ScreenSizeContext, ScreenSizes } from "@/context/ScreenSizeContext";
 import { UserDetails, UserDetailsContext } from "@/context/UserDetailsContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -12,6 +20,12 @@ export function Provider({ children }: { children: ReactNode }) {
     const [screenSize, setScreenSize] = useState<ScreenSizes | undefined>(
         "desktop"
     );
+    const [dragElementLayout, setDragElementLayout] = useState<
+        DragDropLayoutElement | undefined
+    >();
+    const [emailTemplateLayout, setEmailTemplateLayout] = useState<
+        EmailTemplate | undefined
+    >([]);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -36,7 +50,18 @@ export function Provider({ children }: { children: ReactNode }) {
                     <ScreenSizeContext.Provider
                         value={{ screenSize, setScreenSize }}
                     >
-                        {children}
+                        <DragDropLayoutElementContext.Provider
+                            value={{ dragElementLayout, setDragElementLayout }}
+                        >
+                            <EmailTemplateContext.Provider
+                                value={{
+                                    emailTemplateLayout,
+                                    setEmailTemplateLayout,
+                                }}
+                            >
+                                {children}
+                            </EmailTemplateContext.Provider>
+                        </DragDropLayoutElementContext.Provider>
                     </ScreenSizeContext.Provider>
                 </UserDetailsContext.Provider>
             </GoogleOAuthProvider>
