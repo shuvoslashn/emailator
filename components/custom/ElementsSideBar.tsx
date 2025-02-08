@@ -19,6 +19,15 @@ export default function ElementsSideBar() {
         });
     };
 
+    const onDragElementStart = (element: any) => {
+        setDragElementLayout({
+            dragElement: {
+                ...element,
+                id: Date.now(),
+            },
+        });
+    };
+
     return (
         <div className="h-[94vh] w-full bg-white dark:bg-zinc-900 p-5 flex flex-col gap-8 overflow-y-scroll">
             <div>
@@ -39,13 +48,13 @@ export default function ElementsSideBar() {
             <div>
                 <h2 className="font-semibold text-lg">Elements</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
-                    {ElementList.map((layout) => (
+                    {ElementList.map((element) => (
                         <div
                             key={useId()}
                             draggable
-                            onDragStart={() => onDragLayoutStart(layout)}
+                            onDragStart={() => onDragElementStart(element)}
                         >
-                            <ElementLayoutCard layout={layout} />
+                            <ElementLayoutCard layout={element} />
                         </div>
                     ))}
                 </div>

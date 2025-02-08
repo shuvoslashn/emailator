@@ -1,7 +1,8 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
 export type DragDropLayoutElement = {
-    dragLayout: any;
+    dragLayout?: any;
+    dragElement?: any;
 };
 
 type DragDropLayoutElementContextType = {
