@@ -54,7 +54,7 @@ export default function ColumnLayout({ layout }: any) {
             {Array.from({ length: layout?.numOfCol }).map((_, index) => (
                 <div
                     key={useId()}
-                    className={`p-4 bg-zinc-100 mb-4 ${index === dragOver?.index && dragOver?.columnId && "bg-primary/20"}`}
+                    className={`p-4 bg-zinc-100 dark:bg-zinc-800 mb-4 ${index === dragOver?.index && dragOver?.columnId && "bg-primary/20"}`}
                     onDragOver={(e) => onDragOverHandler(e, index)}
                     onDrop={onDropHandle}
                 >
