@@ -11,18 +11,18 @@ export default function Logo() {
             {theme === "light" ? (
                 <Image
                     src="/logo/logo-black.svg"
-                    width={160}
+                    width={100}
                     height={50}
                     alt="Emailator Logo"
-                    className="w-[120px] md:w-[160px] h-auto"
+                    className="w-[120px] md:w-[140px] h-auto"
                 />
             ) : (
                 <Image
                     src="/logo/logo-white.svg"
-                    width={160}
+                    width={100}
                     height={50}
                     alt="Emailator Logo"
-                    className="w-[120px] md:w-[160px] h-auto"
+                    className="w-[120px] md:w-[140px] h-auto"
                 />
             )}
         </Link>

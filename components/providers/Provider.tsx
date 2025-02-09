@@ -23,13 +23,36 @@ export function Provider({ children }: { children: ReactNode }) {
     const [dragElementLayout, setDragElementLayout] = useState<
         DragDropLayoutElement | undefined
     >();
+    // const [emailTemplateLayout, setEmailTemplateLayout] = useState<
+    //     EmailTemplate | undefined
+    // >([]);
     const [emailTemplateLayout, setEmailTemplateLayout] = useState<
         EmailTemplate | undefined
-    >([]);
+    >(() => {
+        if (typeof window !== "undefined") {
+            const storedEmailTemplate = localStorage.getItem("emailTemplate");
+            try {
+                return storedEmailTemplate
+                    ? JSON.parse(storedEmailTemplate)
+                    : [];
+            } catch (error) {
+                console.error(
+                    "Error parsing emailTemplate from localStorage:",
+                    error
+                );
+                return [];
+            }
+        }
+        return [];
+    });
 
     useEffect(() => {
         if (typeof window !== "undefined") {
             const storage = JSON.parse(localStorage.getItem("userDetails")!);
+            const emailTemplateStorage = JSON.parse(
+                localStorage.getItem("emailTemplate")!
+            );
+            setEmailTemplateLayout(emailTemplateStorage);
 
             if (!storage?.email || !storage) {
                 // Redirect to HomeScreen
@@ -38,6 +61,22 @@ export function Provider({ children }: { children: ReactNode }) {
             }
         }
     }, []);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            try {
+                localStorage.setItem(
+                    "emailTemplate",
+                    JSON.stringify(emailTemplateLayout)
+                );
+            } catch (error) {
+                console.error(
+                    "Error saving emailTemplate to localStorage:",
+                    error
+                );
+            }
+        }
+    }, [emailTemplateLayout]);
 
     return (
         <ConvexProvider client={convex}>

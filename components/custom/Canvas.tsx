@@ -2,6 +2,7 @@
 import { useDragDropElementLayout } from "@/hooks/useDragDropElemenLayout";
 import { useEmailTemplate } from "@/hooks/useEmailTemplate";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 import ColumnLayout from "../layoutElements/ColumnLayout";
 
@@ -51,9 +52,9 @@ export default function Canvas() {
                     ))
                 ) : (
                     <h2
-                        className={`text-center p-4 border border-dashed dark:bg-zinc-950 bg-zinc-100 ${dragOver && "bg-primary/10 p-4 text-primary"}`}
+                        className={`flex justify-center items-center gap-2 text-center p-4 border-2 border-dashed text-zinc-500 ${dragOver && "bg-primary/10 p-4 text-primary"}`}
                     >
-                        Add template Here
+                        <PlusCircle strokeWidth={1.25} size={20} /> Add Column
                     </h2>
                 )}
             </div>

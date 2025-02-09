@@ -10,6 +10,24 @@ import {
 
 export default [
     {
+        icon: Text,
+        type: "Text",
+        label: "Text",
+        content:
+            "Lorem ipsum dolor sit amet consectetur adipiscing elit nisl maecenas sem tempus, non vestibulum facilisi dis volutpat montes phasellus condimentum tristique hendrerit",
+        style: {
+            padding: "10px",
+            textAlign: "left",
+            fontSize: "16px",
+            fontWeight: "normal",
+            textTransform: "default", //lowercase , capitilized
+        },
+        outerStyle: {
+            backgroundColor: "#fff",
+            width: "100%",
+        },
+    },
+    {
         icon: RectangleEllipsis,
         label: "Button",
         type: "Button",
@@ -19,9 +37,9 @@ export default [
             textAlign: "center",
             backgroundColor: "#007bff",
             color: "#ffffff",
-            padding: "10px",
+            padding: "12px 15px",
             width: "auto",
-            fontSize: "16px",
+            fontSize: "14px",
             borderRadius: "0px",
             fontWeight: "normal",
             objectFit: "contain",
@@ -33,34 +51,15 @@ export default [
             width: "100%",
         },
     },
-    {
-        icon: Text,
-        type: "Text",
-        label: "Text",
-        textarea: "Sample Text",
-        style: {
-            backgroundColor: "#fff",
-            color: "#000000",
-            padding: "10px",
-            textAlign: "center",
-            fontSize: "22px",
-            fontWeight: "normal",
-            textTransform: "uppercase", //lowercase , capitilized
-        },
-        outerStyle: {
-            backgroundColor: "#fff",
-            width: "100%",
-        },
-    },
+
     {
         icon: Image,
         type: "Image",
         label: "Image",
-        imageUrl: "/image.png",
+        imageUrl: "/imageComp.webp",
         alt: "Image",
         url: "#",
         style: {
-            backgroundColor: "#ffffff",
             padding: "10px",
             height: "50%",
             width: "70%",
@@ -72,7 +71,6 @@ export default [
             width: "100%",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#fff",
         },
     },
     {
