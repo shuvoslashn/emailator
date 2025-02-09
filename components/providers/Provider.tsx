@@ -9,6 +9,10 @@ import {
     EmailTemplateContext,
 } from "@/context/EmailTemplateContext";
 import { ScreenSizeContext, ScreenSizes } from "@/context/ScreenSizeContext";
+import {
+    SelectedElement,
+    SelectedElementContext,
+} from "@/context/SelectedElementContext";
 import { UserDetails, UserDetailsContext } from "@/context/UserDetailsContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
@@ -23,9 +27,7 @@ export function Provider({ children }: { children: ReactNode }) {
     const [dragElementLayout, setDragElementLayout] = useState<
         DragDropLayoutElement | undefined
     >();
-    // const [emailTemplateLayout, setEmailTemplateLayout] = useState<
-    //     EmailTemplate | undefined
-    // >([]);
+
     const [emailTemplateLayout, setEmailTemplateLayout] = useState<
         EmailTemplate | undefined
     >(() => {
@@ -45,6 +47,10 @@ export function Provider({ children }: { children: ReactNode }) {
         }
         return [];
     });
+
+    const [selectedElement, setSelectedElement] = useState<
+        SelectedElement | undefined
+    >(undefined);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -78,6 +84,21 @@ export function Provider({ children }: { children: ReactNode }) {
         }
     }, [emailTemplateLayout]);
 
+    useEffect(() => {
+        if (selectedElement) {
+            const updatedEmailTemplates = emailTemplateLayout?.map((item) => {
+                if (item?.id === selectedElement?.layout?.id) {
+                    return { ...item, layout: selectedElement?.layout };
+                }
+                return item;
+            });
+
+            if (updatedEmailTemplates) {
+                setEmailTemplateLayout(updatedEmailTemplates);
+            }
+        }
+    }, [selectedElement, emailTemplateLayout]);
+
     return (
         <ConvexProvider client={convex}>
             <GoogleOAuthProvider
@@ -98,7 +119,14 @@ export function Provider({ children }: { children: ReactNode }) {
                                     setEmailTemplateLayout,
                                 }}
                             >
-                                {children}
+                                <SelectedElementContext.Provider
+                                    value={{
+                                        selectedElement,
+                                        setSelectedElement,
+                                    }}
+                                >
+                                    {children}
+                                </SelectedElementContext.Provider>
                             </EmailTemplateContext.Provider>
                         </DragDropLayoutElementContext.Provider>
                     </ScreenSizeContext.Provider>

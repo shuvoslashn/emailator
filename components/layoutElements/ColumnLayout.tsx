@@ -1,6 +1,7 @@
 "use client";
 import { useDragDropElementLayout } from "@/hooks/useDragDropElemenLayout";
 import { useEmailTemplate } from "@/hooks/useEmailTemplate";
+import { useSelectedElement } from "@/hooks/useSelectedElement";
 import { useId, useState } from "react";
 import ButtonComponents from "../custom/elements/ButtonComponents";
 import DividerComponents from "../custom/elements/DividerComponents";
@@ -21,6 +22,7 @@ export default function ColumnLayout({ layout }: any) {
     const { dragElementLayout, setDragElementLayout } =
         useDragDropElementLayout();
     const [dragging, setDragging] = useState(false);
+    const [selectedElement, setSelectedElement] = useSelectedElement();
 
     const onDragOverHandler = (
         e: React.DragEvent<HTMLDivElement>,
@@ -84,10 +86,11 @@ export default function ColumnLayout({ layout }: any) {
             {Array.from({ length: layout?.numOfCol }).map((_, index) => (
                 <div
                     key={useId()}
-                    className={`${!layout?.[index]?.type && "p-4 border-2 border-dashed text-zinc-500"} ${index === dragOver?.index && dragOver?.columnId && "border-primary"} flex flex-col justify-center text-center mb-4`}
+                    className={`${!layout?.[index]?.type && "p-4 border-2 border-dashed text-zinc-500"} ${index === dragOver?.index && dragOver?.columnId && "border-primary"} ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index && "border-primary border-2 border-dashed"} flex flex-col justify-center text-center mb-4 cursor-pointer`}
                     onDragOver={(e) => onDragOverHandler(e, index)}
                     onDrop={onDropHandle}
                     onDragLeave={onDragLeaveHandler}
+                    onClick={() => setSelectedElement({ layout, index })}
                 >
                     {GetElementComponent(layout?.[index]) ?? "Drag Here"}
                 </div>

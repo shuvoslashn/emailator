@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type logoTypes = {
+type logoHeaderTypes = {
     imageUrl: string;
     alt: string;
     url: string;
@@ -15,7 +15,7 @@ export default function LogoHeaderComponents({
     url,
     style,
     outerStyle,
-}: logoTypes) {
+}: logoHeaderTypes) {
     return (
         <div style={outerStyle} className="shadow-md text-center">
             <Link href={url} className="">
