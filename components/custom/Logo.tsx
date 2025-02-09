@@ -15,6 +15,7 @@ export default function Logo() {
                     height={50}
                     alt="Emailator Logo"
                     className="w-[120px] md:w-[140px] h-auto"
+                    priority={true}
                 />
             ) : (
                 <Image
@@ -23,6 +24,7 @@ export default function Logo() {
                     height={50}
                     alt="Emailator Logo"
                     className="w-[120px] md:w-[140px] h-auto"
+                    priority={true}
                 />
             )}
         </Link>
