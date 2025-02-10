@@ -19,6 +19,7 @@ export default function ColorPickerField({
                 type="color"
                 value={value}
                 onChange={(e) => onHandleStyleChange(e.target.value)}
+                className="w-8 h-8 p-0 rounded-full border-none stroke-none"
             />
         </div>
     );
