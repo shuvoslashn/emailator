@@ -97,7 +97,7 @@ export function Provider({ children }: { children: ReactNode }) {
                 setEmailTemplateLayout(updatedEmailTemplates);
             }
         }
-    }, [selectedElement, emailTemplateLayout]);
+    }, [selectedElement]);
 
     return (
         <ConvexProvider client={convex}>
