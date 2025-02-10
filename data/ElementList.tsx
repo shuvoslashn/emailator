@@ -35,7 +35,7 @@ export default [
         url: "#",
         style: {
             textAlign: "center",
-            backgroundColor: "#007bff",
+            backgroundColor: "#000000",
             color: "#ffffff",
             padding: "12px 15px",
             width: "auto",
@@ -61,7 +61,7 @@ export default [
         url: "#",
         style: {
             padding: "10px",
-            height: "50%",
+            height: "auto",
             width: "70%",
             margin: "0px",
             borderRadius: "0px",

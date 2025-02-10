@@ -84,18 +84,37 @@ export function Provider({ children }: { children: ReactNode }) {
         }
     }, [emailTemplateLayout]);
 
+    // useEffect(() => {
+    //     if (selectedElement) {
+    //         const updatedEmailTemplates = emailTemplateLayout?.map((item) => {
+    //             if (item?.id === selectedElement?.layout?.id) {
+    //                 return { ...item, layout: selectedElement?.layout };
+    //             }
+    //             return item;
+    //         });
+
+    //         if (updatedEmailTemplates) {
+    //             setEmailTemplateLayout(updatedEmailTemplates);
+    //         }
+    //     }
+    // }, [selectedElement]);
+
     useEffect(() => {
         if (selectedElement) {
-            const updatedEmailTemplates = emailTemplateLayout?.map((item) => {
-                if (item?.id === selectedElement?.layout?.id) {
-                    return { ...item, layout: selectedElement?.layout };
+            const updatedEmailTemplate:
+                | any[]
+                | ((
+                      prevState: EmailTemplate | undefined
+                  ) => EmailTemplate | undefined)
+                | undefined = [];
+            emailTemplateLayout?.map((item, index) => {
+                if (item.id === selectedElement?.layout?.id) {
+                    updatedEmailTemplate?.push(selectedElement?.layout);
+                } else {
+                    updatedEmailTemplate.push(item);
                 }
-                return item;
             });
-
-            if (updatedEmailTemplates) {
-                setEmailTemplateLayout(updatedEmailTemplates);
-            }
+            setEmailTemplateLayout(updatedEmailTemplate);
         }
     }, [selectedElement]);
 

@@ -24,6 +24,7 @@ export default function ImageComponents({
                 height={600}
                 alt={alt}
                 src={imageUrl}
+                priority={true}
             />
         </div>
     ) : (
