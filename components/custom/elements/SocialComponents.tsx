@@ -9,7 +9,10 @@ type iconAndOptionType = {
 type socialIconTypes = {
     socialIcons: iconAndOptionType[];
     option: iconAndOptionType[];
-    style: {};
+    style: {
+        width?: number;
+        height?: number;
+    };
     outerStyle: {};
 };
 
@@ -20,19 +23,21 @@ export default function SocialComponents({
 }: socialIconTypes) {
     return (
         <div style={outerStyle}>
-            <div style={style} className="flex flex-grow gap-2">
-                {socialIcons?.map((socialIcon) => (
-                    <Link href={socialIcon?.url}>
-                        <Image
-                            src={socialIcon?.icon}
-                            width={30}
-                            height={30}
-                            alt=""
-                            className="w-8 h-8"
-                        />
-                    </Link>
-                ))}
-            </div>
+            {socialIcons?.map((socialIcon) => (
+                <Link
+                    href={socialIcon?.url}
+                    key={crypto.randomUUID()}
+                    style={style}
+                >
+                    <Image
+                        src={socialIcon?.icon}
+                        width={style?.width}
+                        height={style?.width}
+                        alt=""
+                        className=""
+                    />
+                </Link>
+            ))}
         </div>
     );
 }

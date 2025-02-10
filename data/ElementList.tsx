@@ -153,12 +153,13 @@ export default [
             },
         ],
         style: {
-            width: 40,
-            height: 40,
+            width: 20,
+            height: 20,
         },
         outerStyle: {
             display: "flex",
-            gap: 15,
+            gap: "4px",
+            justifyContent: "center",
         },
     },
 ];

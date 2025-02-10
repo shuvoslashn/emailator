@@ -10,6 +10,7 @@ type ElementType = {
     type?: string;
     url?: string;
     style?: {
+        color?: string;
         backgroundColor?: string;
     };
 };
@@ -57,7 +58,7 @@ export default function Settings() {
             <div className="p-5">
                 <h2 className="font-semibold text-lg">Settings</h2>
                 <div className="mt-4 flex flex-col gap-4">
-                    {element?.content && (
+                    {(element?.content || element?.content === "") && (
                         <InputField
                             label={"Content"}
                             value={element?.content || ""}
@@ -66,7 +67,7 @@ export default function Settings() {
                             }
                         />
                     )}
-                    {element?.url && (
+                    {(element?.url || element?.url === "") && (
                         <InputField
                             label={"Url"}
                             value={element?.url || ""}
@@ -75,12 +76,23 @@ export default function Settings() {
                             }
                         />
                     )}
-                    {element?.url && (
+                    {element?.style?.backgroundColor && (
                         <ColorPickerField
+                            type={"bgcolor"}
                             label={"Background Color"}
                             value={element?.style?.backgroundColor || ""}
                             onHandleStyleChange={(value: string) =>
                                 onHandleStyleChange("backgroundColor", value)
+                            }
+                        />
+                    )}
+                    {element?.style?.color && (
+                        <ColorPickerField
+                            type={"color"}
+                            label={"Text Color"}
+                            value={element?.style?.color || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("color", value)
                             }
                         />
                     )}
