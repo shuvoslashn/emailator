@@ -4,14 +4,17 @@ import { useSelectedElement } from "@/hooks/useSelectedElement";
 import { useEffect, useState } from "react";
 import ColorPickerField from "./settings/ColorPickerField";
 import InputField from "./settings/InputField";
+import InputStyleField from "./settings/InputStyleField";
 
 type ElementType = {
     content?: string;
     type?: string;
     url?: string;
     style?: {
+        fontSize?: string;
         color?: string;
         backgroundColor?: string;
+        padding?: string;
     };
 };
 
@@ -93,6 +96,28 @@ export default function Settings() {
                             value={element?.style?.color || ""}
                             onHandleStyleChange={(value: string) =>
                                 onHandleStyleChange("color", value)
+                            }
+                        />
+                    )}
+                    {(element?.style?.fontSize ||
+                        element?.style?.fontSize === "") && (
+                        <InputStyleField
+                            type="px"
+                            label={"Font Size"}
+                            value={element?.style?.fontSize || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("fontSize", value)
+                            }
+                        />
+                    )}
+                    {(element?.style?.padding ||
+                        element?.style?.padding === "") && (
+                        <InputStyleField
+                            type="px"
+                            label={"Padding Size"}
+                            value={element?.style?.padding || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("padding", value)
                             }
                         />
                     )}

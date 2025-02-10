@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { useSelectedElement } from "@/hooks/useSelectedElement";
 import { useEffect, useState } from "react";
 
-type colorPickerType = {
+type ColorPickerType = {
     type: string;
     label: string;
     value: string;
@@ -15,7 +15,7 @@ export default function ColorPickerField({
     label,
     value,
     onHandleStyleChange,
-}: colorPickerType) {
+}: ColorPickerType) {
     const [bgColorCode, setBgColorCode] = useState<String | undefined>();
     const [colorCode, setColorCode] = useState<String | undefined>();
 
