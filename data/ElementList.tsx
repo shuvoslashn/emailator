@@ -37,7 +37,6 @@ export default [
         content: "Sample Button",
         url: "#",
         style: {
-            textAlign: "center",
             backgroundColor: "#000000",
             color: "#ffffff",
             padding: "12px",

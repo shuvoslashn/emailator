@@ -96,6 +96,15 @@ export default function Settings() {
                             }
                         />
                     )}
+                    {(element?.url || element?.url === "") && (
+                        <InputField
+                            label={"Url"}
+                            value={element?.url || ""}
+                            onHandleInputChange={(value: string) =>
+                                onHandleInputChange("url", value)
+                            }
+                        />
+                    )}
                     {(element?.style?.textAlign ||
                         element?.style?.textAlign === "") && (
                         <ToggleGroupField
@@ -118,15 +127,7 @@ export default function Settings() {
                             }
                         />
                     )}
-                    {(element?.url || element?.url === "") && (
-                        <InputField
-                            label={"Url"}
-                            value={element?.url || ""}
-                            onHandleInputChange={(value: string) =>
-                                onHandleInputChange("url", value)
-                            }
-                        />
-                    )}
+
                     {(element?.style?.width ||
                         element?.style?.width === "") && (
                         <SliderField

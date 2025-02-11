@@ -1,6 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { TransformType } from "@/data/TextTransformOptions";
+import { useId } from "react";
 
 export type OptionType = {
     _id: string;
@@ -33,7 +34,7 @@ export default function ToggleGroupField({
             >
                 {options.map((option) => (
                     <ToggleGroupItem
-                        key={crypto.randomUUID()}
+                        key={useId()}
                         value={option.value}
                         className="w-full p-1.5 stroke-[1.35px] cursor-pointer"
                         asChild

@@ -13,7 +13,7 @@ export default function InputField({
     onHandleInputChange,
 }: InputData) {
     return (
-        <div className="mt-4 flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1.5">
             <Label className="text-sm font-bold">{label}</Label>
             <Input
                 className="text-zinc-700 dark:text-zinc-300 dark:bg-zinc-950"

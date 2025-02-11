@@ -6,6 +6,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useId } from "react";
 
 type DropdownFieldType = {
     label: string;
@@ -32,7 +33,7 @@ export default function DropdownField({
                 </SelectTrigger>
                 <SelectContent>
                     {options.map((option) => (
-                        <SelectItem key={crypto.randomUUID()} value={option}>
+                        <SelectItem key={useId()} value={option}>
                             {option}
                         </SelectItem>
                     ))}

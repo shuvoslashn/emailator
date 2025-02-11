@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useId } from "react";
 
 type iconAndOptionType = {
     icon: string;
@@ -24,11 +25,7 @@ export default function SocialComponents({
     return (
         <div style={outerStyle}>
             {socialIcons?.map((socialIcon) => (
-                <Link
-                    href={socialIcon?.url}
-                    key={crypto.randomUUID()}
-                    style={style}
-                >
+                <Link href={socialIcon?.url} key={useId()} style={style}>
                     <Image
                         src={socialIcon?.icon}
                         width={30}
