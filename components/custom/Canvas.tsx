@@ -65,7 +65,7 @@ export default function Canvas() {
         : "";
 
     return (
-        <div className="h-[94vh] w-full bg-zinc-200 dark:bg-zinc-800 p-8 overflow-y-scroll flex justify-center">
+        <div className="min-h-[94vh] h-full w-full bg-zinc-200 dark:bg-zinc-800 p-8 pb-24 flex justify-center">
             <div
                 onDragOver={onDragOver}
                 onDrop={onDropHandler}

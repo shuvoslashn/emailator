@@ -32,7 +32,7 @@ export default function ColorPickerField({
     }, [colorCode, bgColorCode, selectedElement]);
 
     return (
-        <div className="mt-4 flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1.5">
             <Label className="text-sm font-bold">{label}</Label>
             {type === "color" ? (
                 <div className="flex items-center gap-0">

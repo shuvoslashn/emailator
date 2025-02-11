@@ -4,6 +4,7 @@ import ElementList from "@/data/ElementList";
 import Layout from "@/data/Layout";
 import { useDragDropElementLayout } from "@/hooks/useDragDropElemenLayout";
 import { useId } from "react";
+import { ScrollArea } from "../ui/scroll-area";
 import ElementLayoutCard from "./ElementLayoutCard";
 
 export default function ElementsSideBar() {
@@ -29,8 +30,8 @@ export default function ElementsSideBar() {
     };
 
     return (
-        <div className="h-[94vh] w-full bg-white dark:bg-zinc-900 p-5 flex flex-col gap-8 overflow-y-scroll">
-            <div>
+        <ScrollArea className="h-[94vh] w-full bg-white dark:bg-zinc-900 p-5 flex flex-col gap-8">
+            <div className="mb-8">
                 <h2 className="font-semibold text-lg">Layouts</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                     {Layout.map((layout) => (
@@ -45,7 +46,7 @@ export default function ElementsSideBar() {
                 </div>
             </div>
 
-            <div>
+            <div className="pb-24">
                 <h2 className="font-semibold text-lg">Elements</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                     {ElementList.map((element) => (
@@ -59,6 +60,6 @@ export default function ElementsSideBar() {
                     ))}
                 </div>
             </div>
-        </div>
+        </ScrollArea>
     );
 }

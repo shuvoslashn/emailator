@@ -3,14 +3,22 @@ import Link from "next/link";
 
 type buttonTypes = {
     style: {};
+    outerStyle: {};
     content: string;
     url: string;
 };
 
-export default function ButtonComponents({ style, content, url }: buttonTypes) {
+export default function ButtonComponents({
+    style,
+    content,
+    url,
+    outerStyle,
+}: buttonTypes) {
     return (
-        <Button style={style} asChild>
-            <Link href={url}>{content}</Link>
-        </Button>
+        <div style={outerStyle}>
+            <Button style={style} asChild>
+                <Link href={url}>{content}</Link>
+            </Button>
+        </div>
     );
 }

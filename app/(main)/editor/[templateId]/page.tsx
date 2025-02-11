@@ -2,6 +2,7 @@ import Canvas from "@/components/custom/Canvas";
 import EditorHeader from "@/components/custom/EditorHeader";
 import ElementsSideBar from "@/components/custom/ElementsSideBar";
 import Settings from "@/components/custom/Settings";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Editor() {
     return (
@@ -9,11 +10,11 @@ export default function Editor() {
             <EditorHeader />
 
             {/* Editor Body */}
-            <div className="grid grid-cols-6 pt-14 overflow-hidden h-screen">
+            <div className="grid grid-cols-6 pt-[60px] overflow-hidden h-screen">
                 <ElementsSideBar />
-                <div className="col-span-4">
+                <ScrollArea className="col-span-4">
                     <Canvas />
-                </div>
+                </ScrollArea>
                 <Settings />
             </div>
         </>

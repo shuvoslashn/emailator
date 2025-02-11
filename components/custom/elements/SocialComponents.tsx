@@ -10,8 +10,8 @@ type socialIconTypes = {
     socialIcons: iconAndOptionType[];
     option: iconAndOptionType[];
     style: {
-        width?: number;
-        height?: number;
+        width?: string;
+        height?: string;
     };
     outerStyle: {};
 };
@@ -31,10 +31,10 @@ export default function SocialComponents({
                 >
                     <Image
                         src={socialIcon?.icon}
-                        width={style?.width}
-                        height={style?.width}
+                        width={30}
+                        height={30}
                         alt=""
-                        className=""
+                        style={{ width: `${style?.width}` }}
                     />
                 </Link>
             ))}

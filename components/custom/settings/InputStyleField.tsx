@@ -20,8 +20,8 @@ export default function InputStyleField({
 
     return (
         <div>
-            <Label className="text-sm font-bold">{label}</Label>
-            <div className="flex">
+            <Label className="text-sm font-bold pb-2">{label}</Label>
+            <div className="flex pt-1">
                 <Input
                     type="number"
                     value={formatValue(value)}

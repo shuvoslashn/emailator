@@ -20,7 +20,10 @@ export default [
             textAlign: "left",
             fontSize: "16px",
             fontWeight: "normal",
-            textTransform: "default", //lowercase , capitilized
+            textTransform: "default",
+            backgroundColor: "transparent",
+            color: "#888888",
+            width: "100%",
         },
         outerStyle: {
             backgroundColor: "#fff",
@@ -37,12 +40,13 @@ export default [
             textAlign: "center",
             backgroundColor: "#000000",
             color: "#ffffff",
-            padding: "12px 15px",
+            padding: "12px",
             width: "auto",
             fontSize: "14px",
             borderRadius: "0px",
             fontWeight: "normal",
             objectFit: "contain",
+            textTransform: "default",
         },
         outerStyle: {
             display: "flex",
@@ -153,8 +157,8 @@ export default [
             },
         ],
         style: {
-            width: 20,
-            height: 20,
+            width: "20px",
+            height: "20px",
         },
         outerStyle: {
             display: "flex",
