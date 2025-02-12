@@ -82,11 +82,12 @@ export default function ColumnLayout({ layout }: any) {
                 gridTemplateColumns: `repeat(${layout?.numOfCol}, 1fr)`,
                 gap: "20px",
             }}
+            className={`${selectedElement?.layout?.id === layout?.id && "border border-dashed border-primary"}`}
         >
             {Array.from({ length: layout?.numOfCol }).map((_, index) => (
                 <div
                     key={useId()}
-                    className={`${!layout?.[index]?.type && "0 border-2 border-dashed text-zinc-500"} ${index === dragOver?.index && dragOver?.columnId && "border-primary"} ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index && "border-primary border-2 border-dashed"} flex flex-col justify-center items-start text-center mb-4 cursor-pointer`}
+                    className={`${!layout?.[index]?.type && "0 border-4 border-dashed text-zinc-500"} ${index === dragOver?.index && dragOver?.columnId && "border-primary"} ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index && "border-primary border-2 border-dashed"} flex flex-col justify-center items-start text-center cursor-pointer`}
                     onDragOver={(e) => onDragOverHandler(e, index)}
                     onDrop={onDropHandle}
                     onDragLeave={onDragLeaveHandler}

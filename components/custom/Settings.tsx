@@ -25,6 +25,7 @@ type ElementType = {
         color?: string;
         backgroundColor?: string;
         padding?: string;
+        margin?: string;
         borderRadius?: string;
         width?: string;
         textAlign?: string;
@@ -33,6 +34,10 @@ type ElementType = {
     };
     outerStyle?: {
         width?: string;
+        color?: string;
+        backgroundColor?: string;
+        align?: string;
+        justifyContent?: string;
     };
 };
 
@@ -64,6 +69,11 @@ export default function Settings() {
                         ...selectedElement.layout[selectedElement.index]?.style,
                         [fieldName]: value,
                     },
+                    outerStyle: {
+                        ...selectedElement.layout[selectedElement.index]
+                            ?.outerStyle,
+                        [fieldName]: value,
+                    },
                 },
             },
         };
@@ -79,8 +89,7 @@ export default function Settings() {
             <div className="p-5 pb-60">
                 <h2 className="font-semibold text-lg">Settings</h2>
                 <div className="mt-4 flex flex-col gap-8">
-                    {(element?.type === "Image" ||
-                        element?.imageUrl === "") && (
+                    {element?.imageUrl && (
                         <ImagePreview
                             label={"Image Preview"}
                             value={element?.imageUrl || ""}
@@ -206,6 +215,17 @@ export default function Settings() {
                             }
                         />
                     )}
+                    {(element?.style?.margin ||
+                        element?.style?.margin === "") && (
+                        <InputStyleField
+                            type="px"
+                            label={"Margin Size"}
+                            value={element?.style?.margin || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("margin", value)
+                            }
+                        />
+                    )}
                     {(element?.style?.borderRadius ||
                         element?.style?.borderRadius === "") && (
                         <SliderField
@@ -215,6 +235,45 @@ export default function Settings() {
                             value={element?.style?.borderRadius || ""}
                             onHandleStyleChange={(value: string) =>
                                 onHandleStyleChange("borderRadius", value)
+                            }
+                        />
+                    )}
+
+                    <h3 className="font-semibold text-md -mb-3">Outer Style</h3>
+
+                    {element?.outerStyle?.backgroundColor && (
+                        <ColorPickerField
+                            type={"outerbgcolor"}
+                            label={"Background Color"}
+                            value={
+                                element?.outerStyle?.backgroundColor ||
+                                "#ffffff"
+                            }
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("backgroundColor", value)
+                            }
+                        />
+                    )}
+                    {(element?.outerStyle?.justifyContent ||
+                        element?.outerStyle?.justifyContent === "") && (
+                        <ToggleGroupField
+                            label={"Alignment"}
+                            value={element?.outerStyle?.justifyContent}
+                            options={TextAlignOptions}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("justifyContent", value)
+                            }
+                        />
+                    )}
+                    {(element?.outerStyle?.width ||
+                        element?.outerStyle?.width === "") && (
+                        <SliderField
+                            rangeInfo="width"
+                            type="%"
+                            label={"Width"}
+                            value={element?.outerStyle?.width || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleStyleChange("width", value)
                             }
                         />
                     )}

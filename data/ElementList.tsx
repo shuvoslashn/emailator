@@ -21,7 +21,6 @@ export default [
             fontSize: "16px",
             fontWeight: "normal",
             textTransform: "default",
-            backgroundColor: "transparent",
             color: "#888888",
             width: "100%",
         },
@@ -68,14 +67,13 @@ export default [
             width: "70%",
             margin: "0px",
             borderRadius: "0px",
-            
+            backgroundColor: "#fff",
         },
         outerStyle: {
             display: "flex",
             width: "100%",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#fff",
         },
     },
     {
@@ -105,13 +103,13 @@ export default [
         style: {
             padding: "10px",
             height: "",
-            width: "120px",
         },
         outerStyle: {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
+            backgroundColor: "#ffffff11",
         },
     },
     {

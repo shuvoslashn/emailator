@@ -11,21 +11,21 @@ export default function Canvas() {
     const { dragElementLayout } = useDragDropElementLayout();
     const { emailTemplateLayout, setEmailTemplateLayout } = useEmailTemplate();
     const [dragOver, setDragOver] = useState(false);
-    const [isColumnDrag, setIsColumnDrag] = useState(false); // Track if it's a column being dragged
-    const [dragLeave, setDragLeave] = useState(true); // Track when dragging leaves
+    const [isColumnDrag, setIsColumnDrag] = useState(false);
+    const [dragLeave, setDragLeave] = useState(true);
 
     // Handle drag over event and set the correct states
     const onDragOver = (e: React.DragEvent) => {
         e.preventDefault();
         setDragOver(true);
-        setDragLeave(false); // Allow background to highlight
-        setIsColumnDrag(!!dragElementLayout?.dragLayout); // Check if a column layout is being dragged
+        setDragLeave(false);
+        setIsColumnDrag(!!dragElementLayout?.dragLayout);
     };
 
     // Handle drop event
     const onDropHandler = () => {
         setDragOver(false);
-        setDragLeave(true); // Reset state when item is dropped
+        setDragLeave(true);
 
         if (dragElementLayout?.dragLayout) {
             setEmailTemplateLayout((prev) => [
@@ -40,7 +40,7 @@ export default function Canvas() {
     // Handle drag leave
     const onDragLeaveHandler = () => {
         setDragOver(false);
-        setDragLeave(true); // Reset background color when dragging leaves
+        setDragLeave(true);
     };
 
     // Get the component based on the layout type

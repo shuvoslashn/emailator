@@ -18,6 +18,9 @@ export default function ColorPickerField({
 }: ColorPickerType) {
     const [bgColorCode, setBgColorCode] = useState<String | undefined>();
     const [colorCode, setColorCode] = useState<String | undefined>();
+    const [outerBgColorCode, setOuterBgColorCode] = useState<
+        String | undefined
+    >();
 
     const [selectedElement, setSelectedElement] = useSelectedElement();
 
@@ -29,7 +32,11 @@ export default function ColorPickerField({
             selectedElement.layout?.[selectedElement.index]?.style
                 ?.backgroundColor
         );
-    }, [colorCode, bgColorCode, selectedElement]);
+        setOuterBgColorCode(
+            selectedElement.layout?.[selectedElement.index]?.outerStyle
+                ?.backgroundColor
+        );
+    }, [colorCode, bgColorCode, outerBgColorCode, selectedElement]);
 
     return (
         <div className="flex flex-col gap-1.5">
@@ -58,7 +65,7 @@ export default function ColorPickerField({
                         {colorCode}
                     </Label>
                 </div>
-            ) : (
+            ) : type === "bgcolor" ? (
                 <div className="flex items-center gap-0">
                     <div
                         className="w-8 h-8 rounded-full border"
@@ -67,19 +74,43 @@ export default function ColorPickerField({
                         <Input
                             type="color"
                             value={value}
-                            id="col"
+                            id="bgCol"
                             onChange={(e) => {
                                 onHandleStyleChange(e.target.value);
-                                setColorCode(e.target.value);
+                                setBgColorCode(e.target.value);
                             }}
                             className="w-8 h-8 p-0 rounded-full cursor-pointer opacity-0"
                         />
                     </div>
                     <Label
-                        htmlFor="col"
+                        htmlFor="bgCol"
                         className="text-sm text-zinc-700 dark:text-zinc-300 p-2 cursor-pointer"
                     >
                         {bgColorCode}
+                    </Label>
+                </div>
+            ) : (
+                <div className="flex items-center gap-0">
+                    <div
+                        className="w-8 h-8 rounded-full border"
+                        style={{ backgroundColor: `${outerBgColorCode}` }}
+                    >
+                        <Input
+                            type="color"
+                            value={value}
+                            id="outerBgColorCode"
+                            onChange={(e) => {
+                                onHandleStyleChange(e.target.value);
+                                setOuterBgColorCode(e.target.value);
+                            }}
+                            className="w-8 h-8 p-0 rounded-full cursor-pointer opacity-0"
+                        />
+                    </div>
+                    <Label
+                        htmlFor="outerBgColorCode"
+                        className="text-sm text-zinc-700 dark:text-zinc-300 p-2 cursor-pointer"
+                    >
+                        {outerBgColorCode}
                     </Label>
                 </div>
             )}
