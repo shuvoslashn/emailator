@@ -121,6 +121,7 @@ export default [
             backgroundColor: "#777",
             width: "100%",
             height: "1px",
+            padding: "5px",
         },
     },
     {

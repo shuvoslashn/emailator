@@ -24,6 +24,7 @@ export default function LogoComponents({
                 height={60}
                 alt={alt}
                 src={imageUrl}
+                unoptimized
             />
         </div>
     ) : (
@@ -35,6 +36,7 @@ export default function LogoComponents({
                     height={60}
                     alt={alt}
                     src={imageUrl}
+                    unoptimized
                 />
             </Link>
         </div>

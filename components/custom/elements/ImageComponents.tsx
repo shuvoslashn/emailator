@@ -25,6 +25,7 @@ export default function ImageComponents({
                 alt={alt}
                 src={imageUrl}
                 priority={true}
+                unoptimized
             />
         </div>
     ) : (
@@ -36,6 +37,7 @@ export default function ImageComponents({
                     height={600}
                     alt={alt}
                     src={imageUrl}
+                    unoptimized
                 />
             </Link>
         </div>

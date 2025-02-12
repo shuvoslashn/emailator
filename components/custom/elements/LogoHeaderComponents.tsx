@@ -26,6 +26,7 @@ export default function LogoHeaderComponents({
                     alt={alt}
                     src={imageUrl}
                     className="mx-auto"
+                    unoptimized
                 />
             </Link>
         </div>

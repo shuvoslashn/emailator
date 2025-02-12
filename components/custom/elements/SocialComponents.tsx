@@ -31,6 +31,7 @@ export default function SocialComponents({
                         width={25}
                         height={25}
                         alt=""
+                        unoptimized
                     />
                 </Link>
             ))}
