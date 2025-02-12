@@ -68,12 +68,14 @@ export default [
             width: "70%",
             margin: "0px",
             borderRadius: "0px",
+            
         },
         outerStyle: {
             display: "flex",
             width: "100%",
             justifyContent: "center",
             alignItems: "center",
+            backgroundColor: "#fff",
         },
     },
     {

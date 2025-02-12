@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
 import ColorPickerField from "./settings/ColorPickerField";
 import DropdownField from "./settings/DropdownField";
+import ImagePreview from "./settings/ImagePreview";
 import InputField from "./settings/InputField";
 import InputStyleField from "./settings/InputStyleField";
 import SliderField from "./settings/SliderField";
@@ -18,6 +19,7 @@ type ElementType = {
     content?: string;
     type?: string;
     url?: string;
+    imageUrl?: string;
     style?: {
         fontSize?: string;
         color?: string;
@@ -77,6 +79,16 @@ export default function Settings() {
             <div className="p-5 pb-60">
                 <h2 className="font-semibold text-lg">Settings</h2>
                 <div className="mt-4 flex flex-col gap-8">
+                    {(element?.type === "Image" ||
+                        element?.imageUrl === "") && (
+                        <ImagePreview
+                            label={"Image Preview"}
+                            value={element?.imageUrl || ""}
+                            onHandleInputChange={(value: string) =>
+                                onHandleInputChange("imageUrl", value)
+                            }
+                        />
+                    )}
                     {(element?.content || element?.content === "") &&
                         element?.type !== "Text" && (
                             <InputField
@@ -131,6 +143,7 @@ export default function Settings() {
                     {(element?.style?.width ||
                         element?.style?.width === "") && (
                         <SliderField
+                            rangeInfo="width"
                             type="%"
                             label={"Width"}
                             value={element?.style?.width || ""}
@@ -196,6 +209,7 @@ export default function Settings() {
                     {(element?.style?.borderRadius ||
                         element?.style?.borderRadius === "") && (
                         <SliderField
+                            rangeInfo="borderRadius"
                             type="px"
                             label={"Border Radius"}
                             value={element?.style?.borderRadius || ""}

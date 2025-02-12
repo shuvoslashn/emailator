@@ -93,7 +93,7 @@ export default function ColumnLayout({ layout }: any) {
                     onClick={() => setSelectedElement({ layout, index })}
                 >
                     {GetElementComponent(layout?.[index]) ?? (
-                        <p className="p-6">Drag Here</p>
+                        <p className="p-6 w-full text-center">Drag Here</p>
                     )}
                 </div>
             ))}
