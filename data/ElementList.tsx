@@ -163,6 +163,7 @@ export default [
             display: "flex",
             gap: "4px",
             justifyContent: "center",
+            width: "100%",
         },
     },
 ];

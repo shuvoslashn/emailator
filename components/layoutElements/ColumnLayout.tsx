@@ -2,7 +2,8 @@
 import { useDragDropElementLayout } from "@/hooks/useDragDropElemenLayout";
 import { useEmailTemplate } from "@/hooks/useEmailTemplate";
 import { useSelectedElement } from "@/hooks/useSelectedElement";
-import { useId, useState } from "react";
+import { ArrowDown, ArrowUp, Copy, Trash } from "lucide-react";
+import { useState } from "react";
 import ButtonComponents from "../custom/elements/ButtonComponents";
 import DividerComponents from "../custom/elements/DividerComponents";
 import ImageComponents from "../custom/elements/ImageComponents";
@@ -75,18 +76,95 @@ export default function ColumnLayout({ layout }: any) {
         }
     };
 
+    // Delete Layout
+    const deleteLayout = (layoutId: number | string) => {
+        const updaedEmaileTemplate = emailTemplateLayout?.filter(
+            (item) => item.id !== layout.id
+        );
+        setEmailTemplateLayout(updaedEmaileTemplate);
+        setSelectedElement(null);
+    };
+
+    // Move Up Layout
+    const moveItemUp = (layoutId: number) => {
+        if (!emailTemplateLayout || !Array.isArray(emailTemplateLayout)) return;
+
+        const index = emailTemplateLayout.findIndex(
+            (item: { id: number }) => item.id === layoutId
+        );
+
+        if (index === -1 || index === 0) return;
+
+        const updatedItems = [...emailTemplateLayout];
+        [updatedItems[index], updatedItems[index - 1]] = [
+            updatedItems[index - 1],
+            updatedItems[index],
+        ];
+
+        setEmailTemplateLayout(updatedItems);
+    };
+
+    // Move Down Layout
+    const moveItemDown = (layoutId: number | string) => {
+        if (!emailTemplateLayout || !Array.isArray(emailTemplateLayout)) return;
+
+        const index = emailTemplateLayout.findIndex(
+            (item: { id: number }) => item.id === layoutId
+        );
+
+        if (index === -1) return;
+
+        const updatedItems = [...emailTemplateLayout];
+        [updatedItems[index], updatedItems[index + 1]] = [
+            updatedItems[index + 1],
+            updatedItems[index],
+        ];
+
+        setEmailTemplateLayout(updatedItems);
+    };
+
+    // Duplicate Layout
+    const duplicateRow = (layoutId: number | string) => {
+        if (!emailTemplateLayout || !Array.isArray(emailTemplateLayout)) return;
+
+        // Find the index of the row to duplicate
+        const index = emailTemplateLayout.findIndex(
+            (item: { id: number | string }) => item.id === layoutId
+        );
+
+        if (index === -1) return; // If the row is not found, exit
+
+        // Create a copy of the row with a new ID (to avoid conflicts)
+        const rowToDuplicate = emailTemplateLayout[index];
+        const duplicatedRow = {
+            ...rowToDuplicate,
+            id: Date.now(), // Generate a new unique ID (you can use a better ID generation method)
+        };
+
+        // Insert the duplicated row right after the original row
+        const updatedLayout = [
+            ...emailTemplateLayout.slice(0, index + 1),
+            duplicatedRow,
+            ...emailTemplateLayout.slice(index + 1),
+        ];
+
+        // Update the state with the new layout
+        setEmailTemplateLayout(updatedLayout);
+    };
+
     return (
         <div
             style={{
-                display: "grid",
                 gridTemplateColumns: `repeat(${layout?.numOfCol}, 1fr)`,
-                gap: "20px",
             }}
-            className={`${selectedElement?.layout?.id === layout?.id && "border border-dashed border-primary"}`}
+            className={`relative grid gap-5 grid-cols-1 sm:grid-cols-2 ${
+                selectedElement?.layout?.id === layout?.id &&
+                "border border-dashed border-primary"
+            }`}
         >
             {Array.from({ length: layout?.numOfCol }).map((_, index) => (
                 <div
-                    key={useId()}
+                    key={index}
                     className={`${!layout?.[index]?.type && "0 border-4 border-dashed text-zinc-500"} ${index === dragOver?.index && dragOver?.columnId && "border-primary"} ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index && "border-primary border-2 border-dashed"} flex flex-col justify-center items-start text-center cursor-pointer`}
                     onDragOver={(e) => onDragOverHandler(e, index)}
                     onDrop={onDropHandle}
@@ -98,6 +176,48 @@ export default function ColumnLayout({ layout }: any) {
                     )}
                 </div>
             ))}
+            {selectedElement?.layout?.id === layout?.id && (
+                <div className="absolute top-0 -right-10 bg-zinc-500/10 border p-2 rounded-full backdrop-blur-sm">
+                    <div className="flex flex-col gap-3">
+                        <div
+                            onClick={() => deleteLayout(layout?.id)}
+                            className="cursor-pointer"
+                        >
+                            <Trash
+                                size={16}
+                                className="stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-red-500 dark:hover:stroke-red-500 duration-300"
+                            />
+                        </div>
+                        <div
+                            className="cursor-pointer"
+                            onClick={() => duplicateRow(layout?.id)}
+                        >
+                            <Copy
+                                size={16}
+                                className="mb-2 stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-primary dark:hover:stroke-primary duration-300"
+                            />
+                        </div>
+                        <div
+                            className="cursor-pointer"
+                            onClick={() => moveItemUp(layout?.id)}
+                        >
+                            <ArrowUp
+                                size={16}
+                                className="stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-primary dark:hover:stroke-primary duration-300"
+                            />
+                        </div>
+                        <div
+                            className="cursor-pointer"
+                            onClick={() => moveItemDown(layout?.id)}
+                        >
+                            <ArrowDown
+                                size={16}
+                                className="stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-primary dark:hover:stroke-primary duration-300"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

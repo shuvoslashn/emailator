@@ -2,17 +2,22 @@
 import { useDragDropElementLayout } from "@/hooks/useDragDropElemenLayout";
 import { useEmailTemplate } from "@/hooks/useEmailTemplate";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { useSelectedElement } from "@/hooks/useSelectedElement";
 import { PlusCircle } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ColumnLayout from "../layoutElements/ColumnLayout";
+import ViewHTMLDialog from "./ViewHTMLDialog";
 
-export default function Canvas() {
+export default function Canvas({ viewHTMLCode, closeDialog }: any) {
+    const htmlRef = useRef<HTMLDivElement>(null);
     const { screenSize } = useScreenSize();
     const { dragElementLayout } = useDragDropElementLayout();
     const { emailTemplateLayout, setEmailTemplateLayout } = useEmailTemplate();
     const [dragOver, setDragOver] = useState(false);
     const [isColumnDrag, setIsColumnDrag] = useState(false);
     const [dragLeave, setDragLeave] = useState(true);
+    const [selectedElement, setSelectedElement] = useSelectedElement();
+    const [htmlCode, setHTMLCode] = useState<string>("");
 
     // Handle drag over event and set the correct states
     const onDragOver = (e: React.DragEvent) => {
@@ -64,13 +69,31 @@ export default function Canvas() {
             : "stroke-red-500"
         : "";
 
+    useEffect(() => {
+        viewHTMLCode && getHTMLCode();
+    }, [viewHTMLCode]);
+
+    // Get HTML Code
+    const getHTMLCode = () => {
+        console.log(htmlRef.current);
+        if (htmlRef.current) {
+            const htmlContent = htmlRef?.current?.innerHTML;
+            console.log(htmlContent);
+            setHTMLCode(htmlContent);
+        }
+    };
+
     return (
-        <div className="min-h-[94vh] h-full w-full bg-zinc-200 dark:bg-zinc-800 p-8 pb-24 flex justify-center">
+        <div
+            className="min-h-[94vh] h-full w-full bg-zinc-200 dark:bg-zinc-800 p-8 pb-24 flex justify-center"
+            onDoubleClick={() => setSelectedElement(null)}
+        >
             <div
                 onDragOver={onDragOver}
                 onDrop={onDropHandler}
                 onDragLeave={onDragLeaveHandler}
                 className={`bg-white dark:bg-zinc-900 p-6 w-full ${screenSize === "desktop" ? "max-w-3xl" : "max-w-sm"} duration-300`}
+                ref={htmlRef}
             >
                 {emailTemplateLayout?.length ? (
                     emailTemplateLayout.map((item, index) => (
@@ -89,6 +112,11 @@ export default function Canvas() {
                     </h2>
                 )}
             </div>
+            <ViewHTMLDialog
+                openDialog={viewHTMLCode}
+                htmlCode={htmlCode}
+                closeDialog={closeDialog}
+            />
         </div>
     );
 }

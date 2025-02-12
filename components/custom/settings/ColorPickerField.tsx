@@ -25,6 +25,7 @@ export default function ColorPickerField({
     const [selectedElement, setSelectedElement] = useSelectedElement();
 
     useEffect(() => {
+        if (!selectedElement) return;
         setColorCode(
             selectedElement.layout?.[selectedElement.index]?.style?.color
         );

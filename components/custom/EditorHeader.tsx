@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import Logo from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
-export default function EditorHeader() {
+export default function EditorHeader({ viewHTMLCode }: any) {
     const { screenSize, setScreenSize } = useScreenSize();
     return (
         <header className="py-3 shadow-2xl shadow-zinc-800/10 z-50 fixed w-full bg-white dark:bg-zinc-950">
@@ -38,6 +38,9 @@ export default function EditorHeader() {
                     <Button
                         variant={"ghost"}
                         className="border border-zinc-100/10 hover:border-transparent w-8"
+                        onClick={() => {
+                            viewHTMLCode(true);
+                        }}
                     >
                         <Code />
                     </Button>

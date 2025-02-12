@@ -25,13 +25,12 @@ export default function SocialComponents({
     return (
         <div style={outerStyle}>
             {socialIcons?.map((socialIcon) => (
-                <Link href={socialIcon?.url} key={useId()} style={style}>
+                <Link href={socialIcon?.url} key={useId()}>
                     <Image
                         src={socialIcon?.icon}
-                        width={30}
-                        height={30}
+                        width={25}
+                        height={25}
                         alt=""
-                        style={{ width: `${style?.width}` }}
                     />
                 </Link>
             ))}
