@@ -4,7 +4,7 @@ import { api } from "@/convex/_generated/api";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useMutation } from "convex/react";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
 type variantType = {
@@ -42,8 +42,6 @@ export default function SignInButton({
             );
 
             const user = userInfo?.data;
-
-            console.log(user);
 
             // Saving data to localStorage
             if (typeof window !== "undefined") {

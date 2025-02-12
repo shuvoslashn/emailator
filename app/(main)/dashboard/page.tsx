@@ -6,7 +6,7 @@ import { useUserDetails } from "@/hooks/useUserDetails";
 import Link from "next/link";
 
 export default function Dashboard() {
-    const { userDetails, setUserDetails } = useUserDetails();
+    const { userDetails } = useUserDetails();
     return (
         <>
             <Header />

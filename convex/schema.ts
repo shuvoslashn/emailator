@@ -8,4 +8,11 @@ export default defineSchema({
         picture: v.string(),
         credits: v.number(),
     }),
+
+    files: defineTable({
+        storageId: v.id("_storage"),
+        fileName: v.string(),
+        userId: v.id("users"),
+        fileType: v.string(),
+    }),
 });
