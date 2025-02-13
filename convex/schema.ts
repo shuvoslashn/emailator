@@ -15,4 +15,10 @@ export default defineSchema({
         userId: v.id("users"),
         fileType: v.string(),
     }),
+
+    emailTemplates: defineTable({
+        tid: v.string(),
+        design: v.any(),
+        email: v.string(),
+    }),
 });
