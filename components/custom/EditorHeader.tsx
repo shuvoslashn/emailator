@@ -1,5 +1,4 @@
 "use client";
-import { Toaster } from "@/components/ui/sonner";
 import { api } from "@/convex/_generated/api";
 import { useEmailTemplate } from "@/hooks/useEmailTemplate";
 import { useScreenSize } from "@/hooks/useScreenSize";
@@ -92,7 +91,6 @@ export default function EditorHeader({ viewHTMLCode }: any) {
                     <Button onClick={onSaveTemplate}>Save Template</Button>
                 </div>
             </div>
-            <Toaster />
         </header>
     );
 }
