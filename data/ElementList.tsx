@@ -13,7 +13,7 @@ export default [
         icon: Text,
         type: "Text",
         label: "Text",
-        content:
+        textarea:
             "Lorem ipsum dolor sit amet consectetur adipiscing elit nisl maecenas sem tempus, non vestibulum facilisi dis volutpat montes phasellus condimentum tristique hendrerit",
         style: {
             padding: "10px",
@@ -22,7 +22,6 @@ export default [
             fontWeight: "normal",
             textTransform: "default",
             color: "#888888",
-            width: "100%",
         },
         outerStyle: {
             backgroundColor: "#fff",
@@ -39,7 +38,6 @@ export default [
             backgroundColor: "#000000",
             color: "#ffffff",
             padding: "12px",
-            width: "auto",
             fontSize: "14px",
             borderRadius: "0px",
             fontWeight: "normal",
@@ -50,7 +48,6 @@ export default [
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            width: "100%",
         },
     },
 
@@ -64,7 +61,6 @@ export default [
         style: {
             padding: "10px",
             height: "auto",
-            width: "70%",
             margin: "0px",
             borderRadius: "0px",
             backgroundColor: "#fff",
@@ -90,7 +86,6 @@ export default [
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            width: "100%",
         },
     },
     {
@@ -109,7 +104,7 @@ export default [
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            backgroundColor: "#ffffff11",
+            backgroundColor: "#ffffff",
         },
     },
     {

@@ -1,5 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { AlignOptionType } from "@/data/AlignOptions";
 import { TransformType } from "@/data/TextTransformOptions";
 import { useId } from "react";
 
@@ -12,7 +13,7 @@ export type OptionType = {
 type ToggleGroupFieldType = {
     label: string;
     value: string;
-    options: OptionType[] | TransformType[];
+    options: AlignOptionType[] | OptionType[] | TransformType[];
     onHandleStyleChange: (value: string) => void;
 };
 

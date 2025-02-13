@@ -1,12 +1,12 @@
 type textTypes = {
     style: {};
-    content: string;
+    textarea: string;
 };
 
-export default function TextComponents({ style, content }: textTypes) {
+export default function TextComponents({ style, textarea }: textTypes) {
     return (
         <p style={style} className="w-full">
-            {content}
+            {textarea}
         </p>
     );
 }

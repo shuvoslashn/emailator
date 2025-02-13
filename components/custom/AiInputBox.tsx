@@ -5,7 +5,7 @@ import Prompt from "@/data/Prompt";
 import { useUserDetails } from "@/hooks/useUserDetails";
 import axios from "axios";
 import { useMutation } from "convex/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
@@ -30,8 +30,9 @@ export default function AiInputBox() {
             // Save data to Database
             const res = await SaveTemplate({
                 tid: tid,
-                design: result.data,
+                design: result?.data,
                 email: userDetails?.email!,
+                description: userInput,
             });
             console.log(res);
             // Navigate user to editor screen
@@ -56,9 +57,9 @@ export default function AiInputBox() {
             />
             <div className="w-full flex justify-center">
                 <Button
-                    disabled={userInput === ""}
+                    disabled={userInput === "" || loading}
                     size={"lg"}
-                    className="uppercase w-full"
+                    className={`uppercase w-full ${loading && "animate-pulse"}`}
                     onClick={OnGenerate}
                 >
                     {loading ? (

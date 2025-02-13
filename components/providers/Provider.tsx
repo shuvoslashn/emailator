@@ -54,14 +54,42 @@ export function Provider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const storage = JSON.parse(localStorage.getItem("userDetails")!);
-            const emailTemplateStorage = JSON.parse(
-                localStorage.getItem("emailTemplate")!
-            );
+            // Get the stored strings from localStorage
+            const userDetailsString = localStorage.getItem("userDetails");
+            const emailTemplateString = localStorage.getItem("emailTemplate");
+
+            // Parse the strings safely with defaults
+            let storage;
+            let emailTemplateStorage;
+
+            try {
+                storage = userDetailsString
+                    ? JSON.parse(userDetailsString)
+                    : {};
+            } catch (error) {
+                console.error(
+                    "Error parsing userDetails from localStorage:",
+                    error
+                );
+                storage = {};
+            }
+
+            try {
+                emailTemplateStorage = emailTemplateString
+                    ? JSON.parse(emailTemplateString)
+                    : [];
+            } catch (error) {
+                console.error(
+                    "Error parsing emailTemplate from localStorage:",
+                    error
+                );
+                emailTemplateStorage = [];
+            }
+
             setEmailTemplateLayout(emailTemplateStorage);
 
-            if (!storage?.email || !storage) {
-                // Redirect to HomeScreen
+            if (!storage?.email || Object.keys(storage).length === 0) {
+                // Redirect to HomeScreen if needed
             } else {
                 setUserDetails(storage);
             }

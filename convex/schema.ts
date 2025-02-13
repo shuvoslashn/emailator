@@ -20,5 +20,6 @@ export default defineSchema({
         tid: v.string(),
         design: v.any(),
         email: v.string(),
+        description: v.any(),
     }),
 });

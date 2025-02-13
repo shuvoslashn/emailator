@@ -1,5 +1,6 @@
 "use client";
 
+import AlignOption from "@/data/AlignOptions";
 import TextAlignOptions from "@/data/TextAlignOptions";
 import TextTransformOptions from "@/data/TextTransformOptions";
 import { useSelectedElement } from "@/hooks/useSelectedElement";
@@ -59,24 +60,32 @@ export default function Settings() {
     const onHandleStyleChange = (fieldName: string, value: string) => {
         if (!selectedElement || selectedElement.index === undefined) return;
 
+        // Make a copy of the current layout item
+        const currentItem = selectedElement.layout[selectedElement.index];
+
+        const updatedItem = {
+            ...currentItem,
+            style: {
+                ...currentItem.style,
+                [fieldName]: value,
+            },
+            outerStyle:
+                fieldName !== "backgroundColor"
+                    ? {
+                          ...currentItem.outerStyle,
+                          [fieldName]: value,
+                      }
+                    : currentItem.outerStyle,
+        };
+
         const updatedData = {
             ...selectedElement,
             layout: {
                 ...selectedElement.layout,
-                [selectedElement.index]: {
-                    ...selectedElement.layout[selectedElement.index],
-                    style: {
-                        ...selectedElement.layout[selectedElement.index]?.style,
-                        [fieldName]: value,
-                    },
-                    outerStyle: {
-                        ...selectedElement.layout[selectedElement.index]
-                            ?.outerStyle,
-                        [fieldName]: value,
-                    },
-                },
+                [selectedElement.index]: updatedItem,
             },
         };
+
         setSelectedElement(updatedData);
     };
 
@@ -108,12 +117,12 @@ export default function Settings() {
                                 }
                             />
                         )}
-                    {(element?.type === "Text" || element?.content === "") && (
+                    {(element?.type === "Text" || element?.textarea === "") && (
                         <TextAreaField
                             label={"Text Area"}
-                            value={element?.content || ""}
+                            value={element?.textarea || ""}
                             onHandleInputChange={(value: string) =>
-                                onHandleInputChange("content", value)
+                                onHandleInputChange("textarea", value)
                             }
                         />
                     )}
@@ -131,7 +140,7 @@ export default function Settings() {
                         <ToggleGroupField
                             label={"Text Align"}
                             value={element?.style?.textAlign}
-                            options={TextAlignOptions}
+                            options={AlignOption}
                             onHandleStyleChange={(value: string) =>
                                 onHandleStyleChange("textAlign", value)
                             }
@@ -241,9 +250,9 @@ export default function Settings() {
 
                     <h3 className="font-semibold text-md -mb-3">Outer Style</h3>
 
-                    {element?.outerStyle?.backgroundColor && (
+                    {/* {element?.outerStyle?.backgroundColor && (
                         <ColorPickerField
-                            type={"outerbgcolor"}
+                            compType={"outerBgColor"}
                             label={"Background Color"}
                             value={
                                 element?.outerStyle?.backgroundColor ||
@@ -253,7 +262,7 @@ export default function Settings() {
                                 onHandleStyleChange("backgroundColor", value)
                             }
                         />
-                    )}
+                    )} */}
                     {(element?.outerStyle?.justifyContent ||
                         element?.outerStyle?.justifyContent === "") && (
                         <ToggleGroupField
@@ -262,18 +271,6 @@ export default function Settings() {
                             options={TextAlignOptions}
                             onHandleStyleChange={(value: string) =>
                                 onHandleStyleChange("justifyContent", value)
-                            }
-                        />
-                    )}
-                    {(element?.outerStyle?.width ||
-                        element?.outerStyle?.width === "") && (
-                        <SliderField
-                            rangeInfo="width"
-                            type="%"
-                            label={"Width"}
-                            value={element?.outerStyle?.width || ""}
-                            onHandleStyleChange={(value: string) =>
-                                onHandleStyleChange("width", value)
                             }
                         />
                     )}

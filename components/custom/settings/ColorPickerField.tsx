@@ -16,37 +16,28 @@ export default function ColorPickerField({
     value,
     onHandleStyleChange,
 }: ColorPickerType) {
-    const [bgColorCode, setBgColorCode] = useState<String | undefined>();
-    const [colorCode, setColorCode] = useState<String | undefined>();
-    const [outerBgColorCode, setOuterBgColorCode] = useState<
-        String | undefined
-    >();
-
+    const [bgColorCode, setBgColorCode] = useState<string | undefined>();
+    const [colorCode, setColorCode] = useState<string | undefined>();
     const [selectedElement, setSelectedElement] = useSelectedElement();
 
     useEffect(() => {
-        if (!selectedElement) return;
         setColorCode(
-            selectedElement.layout?.[selectedElement.index]?.style?.color
+            selectedElement?.layout?.[selectedElement.index]?.style?.color
         );
         setBgColorCode(
-            selectedElement.layout?.[selectedElement.index]?.style
+            selectedElement?.layout?.[selectedElement.index]?.style
                 ?.backgroundColor
         );
-        setOuterBgColorCode(
-            selectedElement.layout?.[selectedElement.index]?.outerStyle
-                ?.backgroundColor
-        );
-    }, [colorCode, bgColorCode, outerBgColorCode, selectedElement]);
+    }, [selectedElement]);
 
     return (
-        <div className="flex flex-col gap-1.5">
+        <div className="mt-4 flex flex-col gap-1.5">
             <Label className="text-sm font-bold">{label}</Label>
             {type === "color" ? (
                 <div className="flex items-center gap-0">
                     <div
                         className="w-8 h-8 rounded-full border"
-                        style={{ backgroundColor: `${colorCode}` }}
+                        style={{ backgroundColor: colorCode }}
                     >
                         <Input
                             type="color"
@@ -66,52 +57,29 @@ export default function ColorPickerField({
                         {colorCode}
                     </Label>
                 </div>
-            ) : type === "bgcolor" ? (
+            ) : (
                 <div className="flex items-center gap-0">
                     <div
                         className="w-8 h-8 rounded-full border"
-                        style={{ backgroundColor: `${bgColorCode}` }}
+                        style={{ backgroundColor: bgColorCode }}
                     >
                         <Input
                             type="color"
                             value={value}
-                            id="bgCol"
+                            id="col"
                             onChange={(e) => {
                                 onHandleStyleChange(e.target.value);
+                                // Fix: update bgColorCode instead of colorCode for background color changes
                                 setBgColorCode(e.target.value);
                             }}
                             className="w-8 h-8 p-0 rounded-full cursor-pointer opacity-0"
                         />
                     </div>
                     <Label
-                        htmlFor="bgCol"
+                        htmlFor="col"
                         className="text-sm text-zinc-700 dark:text-zinc-300 p-2 cursor-pointer"
                     >
                         {bgColorCode}
-                    </Label>
-                </div>
-            ) : (
-                <div className="flex items-center gap-0">
-                    <div
-                        className="w-8 h-8 rounded-full border"
-                        style={{ backgroundColor: `${outerBgColorCode}` }}
-                    >
-                        <Input
-                            type="color"
-                            value={value}
-                            id="outerBgColorCode"
-                            onChange={(e) => {
-                                onHandleStyleChange(e.target.value);
-                                setOuterBgColorCode(e.target.value);
-                            }}
-                            className="w-8 h-8 p-0 rounded-full cursor-pointer opacity-0"
-                        />
-                    </div>
-                    <Label
-                        htmlFor="outerBgColorCode"
-                        className="text-sm text-zinc-700 dark:text-zinc-300 p-2 cursor-pointer"
-                    >
-                        {outerBgColorCode}
                     </Label>
                 </div>
             )}
