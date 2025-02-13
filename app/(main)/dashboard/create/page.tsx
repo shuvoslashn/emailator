@@ -34,10 +34,10 @@ export default function Create() {
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value="AI">
-                        <AiInputBox />
+                        <AiInputBox type="AI" />
                     </TabsContent>
                     <TabsContent value="SCRATCH">
-                        Change your password here.
+                        <AiInputBox type="SCRATCH" />
                     </TabsContent>
                 </Tabs>
             </div>
