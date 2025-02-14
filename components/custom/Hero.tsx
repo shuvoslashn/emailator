@@ -13,15 +13,15 @@ export default function Hero() {
             <div className="absolute bg-primary w-60 h-60 blur-3xl top-80 left-24 opacity-20"></div>
             <div className="absolute bg-primary w-60 h-60 blur-3xl top-80 right-24 opacity-20"></div>
 
-            <div>
-                <div className="container text-center max-w-4xl py-24">
-                    <h1 className=" font-black text-primary text-6xl pb-2">
+            <div className="z-30">
+                <div className="container text-center max-w-4xl py-16 md:py-24">
+                    <h1 className=" font-black text-primary text-3xl md:text-6xl pb-2">
                         Ai Powered
                     </h1>
                     <h3 className=" font-black text-4xl pb-2">
                         Email Templates Generator &
                     </h3>
-                    <h1 className=" font-black text-primary text-5xl pb-6">
+                    <h1 className="font-black text-primary text-3xl pb-6 md:text-5xl">
                         Drag & Drop Builder
                     </h1>
                     <p>
