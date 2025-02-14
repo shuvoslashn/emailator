@@ -2,7 +2,7 @@
 
 **Emailator** is an AI-powered, drag-and-drop email template builder that allows users to create stunning, customizable email templates effortlessly. Built using cutting-edge technologies like **Next.js 15**, **React 19**, and **Convex**, Emailator combines simplicity with advanced features to empower marketers, designers, and businesses to craft beautiful emails with ease.
 
-<img src="https://emailator.vercel.app/logo/logo-black.svg" alt="Emailator Logo" width="200"/>
+<img src="https://emailator.vercel.app/logo/logo-white.svg" alt="Emailator Logo" width="200"/>
 
 
 ## Features
