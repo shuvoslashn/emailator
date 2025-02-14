@@ -25,11 +25,11 @@ export default function Hero() {
                         Drag & Drop Builder
                     </h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        At facilis sunt adipisci debitis possimus, nemo
-                        molestias exercitationem, esse, distinctio ipsam unde
-                        enim. Minima adipisci hic minus totam quod impedit
-                        blanditiis.
+                        The new edge of AI-driven software, Emailator simplifies
+                        email design with an intuitive drag-and-drop builder.
+                        Create stunning, customizable templates quickly and
+                        easily, all powered by advanced AI technology for
+                        effortless results.
                     </p>
                     <div className="flex gap-3 justify-center mt-8">
                         {userDetails?.email ? (
