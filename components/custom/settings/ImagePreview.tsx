@@ -65,7 +65,7 @@ export default function ImagePreview({
     };
 
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 overflow-hidden">
             <Label className="text-sm font-bold">{label}</Label>
             <div className="relative group">
                 <Image

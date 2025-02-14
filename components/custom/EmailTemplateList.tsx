@@ -69,11 +69,15 @@ export default function EmailTemplateList() {
                                 alt="mail box"
                                 className="mt-0 lg:-mt-16"
                             />
-                            <Button>Create New Template</Button>
+                            <Button>
+                                <Link href={"/dashboard/create"}>
+                                    Create New Template
+                                </Link>
+                            </Button>
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            {emailList.map((item, index) => (
+                            {emailList.reverse().map((item, index) => (
                                 <Link
                                     href={`/editor/${item?.tid}`}
                                     key={index}

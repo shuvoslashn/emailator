@@ -118,7 +118,13 @@ export default [
             backgroundColor: "#777",
             width: "100%",
             height: "1px",
-            padding: "5px",
+            padding: "1px",
+        },
+        outerStyle: {
+            display: "flex",
+            gap: "4px",
+            justifyContent: "center",
+            width: "100%",
         },
     },
     {
