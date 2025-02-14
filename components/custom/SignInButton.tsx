@@ -69,6 +69,7 @@ export default function SignInButton({
 
             // Redirect to dashboard after successful data save
             router.push("/dashboard");
+            location.reload();
         },
         onError: (errorResponse) => console.log(errorResponse),
     });

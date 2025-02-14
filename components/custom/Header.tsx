@@ -1,15 +1,38 @@
 "use client";
 
 import { useUserDetails } from "@/hooks/useUserDetails";
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import Logo from "./Logo";
 import SignInButton from "./SignInButton";
 import { ThemeToggle } from "./ThemeToggle";
 
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useEmailTemplate } from "@/hooks/useEmailTemplate";
+import { googleLogout } from "@react-oauth/google";
+import Image from "next/image";
+
 export default function Header() {
-    const { userDetails } = useUserDetails();
+    const { userDetails, setUserDetails } = useUserDetails();
+    const { emailTemplateLayout, setEmailTemplateLayout } = useEmailTemplate();
+
+    const logout = () => {
+        if (typeof window !== "undefined") {
+            localStorage.removeItem("userDetails");
+            localStorage.removeItem("emailTemplate");
+        }
+
+        setUserDetails(undefined);
+        setEmailTemplateLayout([]);
+        googleLogout();
+
+        window.location.href = "/";
+    };
+
     return (
         <header className="py-3 shadow-2xl shadow-zinc-800/10">
             <div className="container flex justify-between items-center gap-4">
@@ -20,22 +43,37 @@ export default function Header() {
                     <>
                         {userDetails?.email ? (
                             <div className="flex items-center gap-2 md:gap-4">
-                                <Button asChild className="px-3 py-2">
-                                    <Link
-                                        className="text-[12px] md:text-sm"
-                                        href={"/dashboard"}
-                                    >
-                                        Dashboard
-                                    </Link>
-                                </Button>
                                 {userDetails?.picture && userDetails?.name && (
-                                    <Image
-                                        src={userDetails?.picture}
-                                        alt={userDetails?.name}
-                                        width={35}
-                                        height={35}
-                                        className="rounded-full ring-2 ring-primary"
-                                    />
+                                    <DropdownMenu modal={false}>
+                                        <DropdownMenuTrigger className="rounded-full">
+                                            <Image
+                                                src={userDetails?.picture}
+                                                alt={userDetails?.name}
+                                                width={35}
+                                                height={35}
+                                                className="rounded-full ring-2 ring-primary cursor-pointer"
+                                            />
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent
+                                            align="end"
+                                            className="mt-2"
+                                        >
+                                            <DropdownMenuItem>
+                                                <Link
+                                                    className="text-[12px] md:text-sm"
+                                                    href={"/dashboard"}
+                                                >
+                                                    Dashboard
+                                                </Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem
+                                                onClick={logout}
+                                                className=" cursor-pointer"
+                                            >
+                                                Logout
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
                                 )}
                             </div>
                         ) : (

@@ -129,7 +129,7 @@ export default function ColumnLayout({ layout }: any) {
 
         // Find the index of the row to duplicate
         const index = emailTemplateLayout.findIndex(
-            (item: { id: number | string }) => item.id === layoutId
+            (item: { id: number | string }) => item?.id === layoutId
         );
 
         if (index === -1) return; // If the row is not found, exit

@@ -15,7 +15,7 @@ export default function ButtonComponents({
     outerStyle,
 }: buttonTypes) {
     return (
-        <div style={{ display: "flex", alignItems: "center", ...outerStyle }}>
+        <div style={outerStyle}>
             <Button style={style} asChild>
                 <Link href={url}>{content}</Link>
             </Button>

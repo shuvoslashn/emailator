@@ -1,3 +1,4 @@
+import Footer from "@/components/custom/Footer";
 import Header from "@/components/custom/Header";
 
 export default function layout({ children }: { children: React.ReactNode }) {
@@ -5,6 +6,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
         <div>
             <Header />
             {children}
+            <Footer />
         </div>
     );
 }

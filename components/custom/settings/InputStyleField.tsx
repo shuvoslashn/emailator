@@ -16,7 +16,9 @@ export default function InputStyleField({
 }: InputStyleType) {
     const formatValue = (value: string) => {
         if (!value) return 0;
-        return Number(value.toString().replace("px", "")) || 0;
+        let newValue = Number(value.toString().replace("px", "")) || 0;
+        if (newValue <= 0) return 0;
+        return newValue;
     };
 
     return (

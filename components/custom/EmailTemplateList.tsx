@@ -49,7 +49,7 @@ export default function EmailTemplateList() {
     };
 
     return (
-        <div>
+        <div className="pb-16">
             {loading ? (
                 <div className="w-full h-[60vh] flex justify-center items-center gap-3">
                     <div className="w-6 h-6 border-t-4 animate-spin rounded-full border-primary"></div>

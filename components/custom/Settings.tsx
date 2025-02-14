@@ -1,6 +1,5 @@
 "use client";
 
-import AlignOption from "@/data/AlignOptions";
 import TextAlignOptions from "@/data/TextAlignOptions";
 import TextTransformOptions from "@/data/TextTransformOptions";
 import { useSelectedElement } from "@/hooks/useSelectedElement";
@@ -39,6 +38,7 @@ type ElementType = {
         backgroundColor?: string;
         align?: string;
         justifyContent?: string;
+        borderRadius?: string;
     };
 };
 
@@ -58,35 +58,43 @@ export default function Settings() {
     };
 
     const onHandleStyleChange = (fieldName: string, value: string) => {
-        if (!selectedElement || selectedElement.index === undefined) return;
-
-        // Make a copy of the current layout item
-        const currentItem = selectedElement.layout[selectedElement.index];
-
-        const updatedItem = {
-            ...currentItem,
-            style: {
-                ...currentItem.style,
-                [fieldName]: value,
-            },
-            outerStyle:
-                fieldName !== "backgroundColor"
-                    ? {
-                          ...currentItem.outerStyle,
-                          [fieldName]: value,
-                      }
-                    : currentItem.outerStyle,
-        };
-
-        const updatedData = {
+        // if (!selectedElement || selectedElement.index === undefined) return;
+        const updatedElement = {
             ...selectedElement,
             layout: {
-                ...selectedElement.layout,
-                [selectedElement.index]: updatedItem,
+                ...selectedElement?.layout,
+                [selectedElement.index]: {
+                    ...selectedElement?.layout[selectedElement?.index],
+                    style: {
+                        ...selectedElement?.layout[selectedElement?.index]
+                            ?.style,
+                        [fieldName]: value,
+                    },
+                },
             },
         };
 
-        setSelectedElement(updatedData);
+        setSelectedElement(updatedElement);
+    };
+
+    const onHandleOuterStyleChange = (fieldName: string, value: string) => {
+        // if (!selectedElement || selectedElement.index === undefined) return;
+        const updatedElement = {
+            ...selectedElement,
+            layout: {
+                ...selectedElement?.layout,
+                [selectedElement.index]: {
+                    ...selectedElement?.layout[selectedElement?.index],
+                    outerStyle: {
+                        ...selectedElement?.layout[selectedElement?.index]
+                            ?.outerStyle,
+                        [fieldName]: value,
+                    },
+                },
+            },
+        };
+
+        setSelectedElement(updatedElement);
     };
 
     useEffect(() => {
@@ -140,7 +148,7 @@ export default function Settings() {
                         <ToggleGroupField
                             label={"Text Align"}
                             value={element?.style?.textAlign}
-                            options={AlignOption}
+                            options={TextAlignOptions}
                             onHandleStyleChange={(value: string) =>
                                 onHandleStyleChange("textAlign", value)
                             }
@@ -161,7 +169,6 @@ export default function Settings() {
                     {(element?.style?.width ||
                         element?.style?.width === "") && (
                         <SliderField
-                            rangeInfo="width"
                             type="%"
                             label={"Width"}
                             value={element?.style?.width || ""}
@@ -172,7 +179,6 @@ export default function Settings() {
                     )}
                     {element?.style?.backgroundColor && (
                         <ColorPickerField
-                            type={"bgcolor"}
                             label={"Background Color"}
                             value={element?.style?.backgroundColor || "#ffffff"}
                             onHandleStyleChange={(value: string) =>
@@ -182,7 +188,6 @@ export default function Settings() {
                     )}
                     {element?.style?.color && (
                         <ColorPickerField
-                            type={"color"}
                             label={"Text Color"}
                             value={element?.style?.color || "#ffffff"}
                             onHandleStyleChange={(value: string) =>
@@ -238,7 +243,6 @@ export default function Settings() {
                     {(element?.style?.borderRadius ||
                         element?.style?.borderRadius === "") && (
                         <SliderField
-                            rangeInfo="borderRadius"
                             type="px"
                             label={"Border Radius"}
                             value={element?.style?.borderRadius || ""}
@@ -248,21 +252,27 @@ export default function Settings() {
                         />
                     )}
 
-                    <h3 className="font-semibold text-md -mb-3">Outer Style</h3>
+                    {element?.outerStyle && (
+                        <h3 className="font-semibold text-md -mb-3">
+                            Outer Style
+                        </h3>
+                    )}
 
-                    {/* {element?.outerStyle?.backgroundColor && (
+                    {element?.outerStyle?.backgroundColor && (
                         <ColorPickerField
-                            compType={"outerBgColor"}
                             label={"Background Color"}
                             value={
                                 element?.outerStyle?.backgroundColor ||
                                 "#ffffff"
                             }
                             onHandleStyleChange={(value: string) =>
-                                onHandleStyleChange("backgroundColor", value)
+                                onHandleOuterStyleChange(
+                                    "backgroundColor",
+                                    value
+                                )
                             }
                         />
-                    )} */}
+                    )}
                     {(element?.outerStyle?.justifyContent ||
                         element?.outerStyle?.justifyContent === "") && (
                         <ToggleGroupField
@@ -270,7 +280,32 @@ export default function Settings() {
                             value={element?.outerStyle?.justifyContent}
                             options={TextAlignOptions}
                             onHandleStyleChange={(value: string) =>
-                                onHandleStyleChange("justifyContent", value)
+                                onHandleOuterStyleChange(
+                                    "justifyContent",
+                                    value
+                                )
+                            }
+                        />
+                    )}
+                    {(element?.outerStyle?.width ||
+                        element?.outerStyle?.width === "") && (
+                        <SliderField
+                            type="%"
+                            label={"Background Width"}
+                            value={element?.outerStyle?.width || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleOuterStyleChange("width", value)
+                            }
+                        />
+                    )}
+                    {(element?.outerStyle?.borderRadius ||
+                        element?.outerStyle?.borderRadius === "") && (
+                        <SliderField
+                            type="px"
+                            label={"Border Radius"}
+                            value={element?.outerStyle?.borderRadius || ""}
+                            onHandleStyleChange={(value: string) =>
+                                onHandleOuterStyleChange("borderRadius", value)
                             }
                         />
                     )}

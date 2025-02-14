@@ -26,6 +26,7 @@ export default [
         outerStyle: {
             backgroundColor: "#fff",
             width: "100%",
+            borderRadius: "0px",
         },
     },
     {
@@ -45,6 +46,7 @@ export default [
             textTransform: "default",
         },
         outerStyle: {
+            width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -64,10 +66,10 @@ export default [
             margin: "0px",
             borderRadius: "0px",
             backgroundColor: "#fff",
+            width: "100%",
         },
         outerStyle: {
             display: "flex",
-            width: "100%",
             justifyContent: "center",
             alignItems: "center",
         },
@@ -80,7 +82,7 @@ export default [
         alt: "logo",
         url: "#",
         style: {
-            width: "120px",
+            width: "80%",
         },
         outerStyle: {
             display: "flex",

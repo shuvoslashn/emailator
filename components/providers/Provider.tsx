@@ -45,7 +45,7 @@ export function Provider({ children }: { children: ReactNode }) {
                 return [];
             }
         }
-        return [];
+        return [userDetails];
     });
 
     const [selectedElement, setSelectedElement] = useState<
@@ -113,22 +113,15 @@ export function Provider({ children }: { children: ReactNode }) {
     }, [emailTemplateLayout]);
 
     useEffect(() => {
-        if (selectedElement) {
-            const updatedEmailTemplate:
-                | any[]
-                | ((
-                      prevState: EmailTemplate | undefined
-                  ) => EmailTemplate | undefined)
-                | undefined = [];
-            emailTemplateLayout?.map((item) => {
-                if (item.id === selectedElement?.layout?.id) {
-                    updatedEmailTemplate?.push(selectedElement?.layout);
-                } else {
-                    updatedEmailTemplate.push(item);
-                }
-            });
-            setEmailTemplateLayout(updatedEmailTemplate);
-        }
+        if (!selectedElement?.layout?.id || !emailTemplateLayout) return; 
+
+        const updatedEmailTemplate = emailTemplateLayout.map((item) =>
+            item?.id === selectedElement.layout.id
+                ? selectedElement.layout
+                : item
+        );
+
+        setEmailTemplateLayout(updatedEmailTemplate);
     }, [selectedElement]);
 
     return (
