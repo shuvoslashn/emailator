@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emailator
 
-## Getting Started
+**Emailator** is an AI-powered, drag-and-drop email template builder that allows users to create stunning, customizable email templates effortlessly. Built using cutting-edge technologies like **Next.js 15**, **React 19**, and **Convex**, Emailator combines simplicity with advanced features to empower marketers, designers, and businesses to craft beautiful emails with ease.
 
-First, run the development server:
+<img src="https://emailator.vercel.app/logo/logo-black.svg" alt="Emailator Logo" width="200"/>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **AI-Powered Email Creation:** Automatically optimize templates with AI technology.
+- **Drag-and-Drop Builder:** Easily design emails without coding.
+- **Customizable Templates:** Fully customize layouts, colors, and elements.
+- **Mobile-Responsive Design:** All templates are mobile-friendly and look great on any device.
+- **Seamless Integration with Convex:** Easily manage user data and file uploads through a powerful backend.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- **Next.js 15:** A React framework for building static and dynamic websites with great performance.
+- **React 19:** A JavaScript library for building user interfaces.
+- **Convex:** A backend solution for handling database operations and serverless functions.
+- **ShadCN:** A UI component library used for creating accessible and customizable interfaces.
+## Demo
 
-To learn more about Next.js, take a look at the following resources:
+![Emailator Demo](https://i.ibb.co.com/HTDsTrR0/202502142031-ezgif-com-video-to-gif-converter-1.gif)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Installation
 
-## Deploy on Vercel
+To run Emailator locally, follow the steps below:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone this repository:
+    ```bash
+    git clone https://github.com/your-username/emailator.git
+    cd emailator
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install the dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Set up environment variables in a `.env.local` file (for Convex and other services).
+
+4. Run the development server:
+    ```bash
+    npm run dev
+    ```
+5. Run the Convex:
+    ```bash
+    npx convex dev
+    ```
+
+5. Open your browser and go to `http://localhost:3000`.
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
