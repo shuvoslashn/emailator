@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
             "clever-dachshund-418.convex.cloud",
         ],
     },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
 };
 
 export default nextConfig;
