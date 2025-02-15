@@ -177,7 +177,7 @@ export default function ColumnLayout({ layout }: any) {
                 </div>
             ))}
             {selectedElement?.layout?.id === layout?.id && (
-                <div className="absolute top-0 -right-10 bg-zinc-500/10 border p-2 rounded-full backdrop-blur-sm">
+                <div className="absolute top-0 -right-10 bg-zinc-100/80 border p-2 rounded-full backdrop-blur-sm">
                     <div className="flex flex-col gap-3">
                         <div
                             onClick={() => deleteLayout(layout?.id)}
@@ -185,7 +185,7 @@ export default function ColumnLayout({ layout }: any) {
                         >
                             <Trash
                                 size={16}
-                                className="stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-red-500 dark:hover:stroke-red-500 duration-300"
+                                className="stroke-zinc-800 hover:stroke-red-500 dark:hover:stroke-red-500 duration-300"
                             />
                         </div>
                         <div
@@ -194,7 +194,7 @@ export default function ColumnLayout({ layout }: any) {
                         >
                             <Copy
                                 size={16}
-                                className="mb-2 stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-primary dark:hover:stroke-primary duration-300"
+                                className="mb-2 stroke-zinc-800  hover:stroke-primary dark:hover:stroke-primary duration-300"
                             />
                         </div>
                         <div
@@ -203,7 +203,7 @@ export default function ColumnLayout({ layout }: any) {
                         >
                             <ArrowUp
                                 size={16}
-                                className="stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-primary dark:hover:stroke-primary duration-300"
+                                className="stroke-zinc-800  hover:stroke-primary dark:hover:stroke-primary duration-300"
                             />
                         </div>
                         <div
@@ -212,7 +212,7 @@ export default function ColumnLayout({ layout }: any) {
                         >
                             <ArrowDown
                                 size={16}
-                                className="stroke-zinc-800 dark:stroke-zinc-100 hover:stroke-primary dark:hover:stroke-primary duration-300"
+                                className="stroke-zinc-800  hover:stroke-primary dark:hover:stroke-primary duration-300"
                             />
                         </div>
                     </div>

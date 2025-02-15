@@ -92,7 +92,7 @@ export default function Canvas({ viewHTMLCode, closeDialog }: any) {
                 onDragOver={onDragOver}
                 onDrop={onDropHandler}
                 onDragLeave={onDragLeaveHandler}
-                className={`bg-white dark:bg-zinc-900 p-6 w-full ${screenSize === "desktop" ? "max-w-3xl" : "max-w-sm"} duration-300`}
+                className={`bg-white p-6 w-full ${screenSize === "desktop" ? "max-w-3xl" : "max-w-sm"} duration-300`}
                 ref={htmlRef}
             >
                 {emailTemplateLayout?.length ? (
